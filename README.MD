@@ -97,7 +97,7 @@ PG console setting completed. You can close the console here.
 3. Install the bundler
     
     ```gem install bundler```
-4. Before running bundle install, we need to solve dependencies and configerate bundle build
+4. Before running bundle install, we need to solve dependencies and configurate bundle build
     ```bash
     sudo apt update
     sudo apt install -y libpq-dev libcurl4-openssl-dev libv8-dev
