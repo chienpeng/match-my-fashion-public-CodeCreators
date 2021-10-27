@@ -13,6 +13,8 @@ Get Facebook Login to function:
 
 ### How to start a local server:
 
+#### OSX
+
 1. git clone the repository to your local machine  
     ```https://github.com/codecreators07/match-my-fashion-public-CodeCreators```
 2. Once the files are downloaded, follow the standard procedure of installing ruby on rails. 
@@ -81,6 +83,60 @@ PG console setting completed. You can close the console here.
 8. The local server will start on the following link
 
     [http://localhost:3000](http://localhost:3000)
+
+#### Cloud9 (Ubuntu Server 18.04 LTS)
+
+1. Git clone this repository to your local machine. (Make sure you set your SSH key correctly.)
+
+    ```git clone git@github.com:zihanwang1819/match-my-fashion-public-CodeCreators.git```
+2. To ensure same versions are installed, open  Gemfile, and check ruby version. Do the following:
+   
+   ```rvm install 2.4.1```
+   
+   ```rvm use 2.4.1```   
+3. Install the bundler
+    
+    ```gem install bundler```
+4. Before running bundle install, we need to solve dependencies and configerate bundle build
+    ```bash
+    sudo apt update
+    sudo apt install -y libpq-dev libcurl4-openssl-dev libv8-dev
+    bundle config build.libv8 --with-system-v8
+    gem uninstall libv8  # if you preinstall some unmatched libv8 gems
+    gem install therubyracer -v '0.12.3'
+    ```
+5. Bundle install to install all the dependencies in Gemfile
+
+    ```bundle install```
+
+6. Before starting the server, we have to run the PostgreSQL (pg). Here are some steps that you need to follow.
+* Install PostgreSQL:
+    ```bash
+    sudo apt install -y postgresql postgresql-contrib
+    ```
+* According to the database configuration file: (./config/database.yml), we enter the PostgreSQL with the default user postgres
+to create corresponding users and databases.
+    ```bash
+    sudo -u postgres psql
+    (below lines are in PostgreSQL console:)
+    create user beaverthing;
+    alter user beaverthing password 'ubuntu';
+    create database workspace_development;
+    create database workspace_test;
+    create database workspace_production;
+    \q # to exit the console
+    ```
+* Migrate database:
+
+    ```rails db:migrate RAILS_ENV=development```
+7. Start the rails server
+
+    ```rails s -p $PORT -b $IP```  
+8. The puma app server will start, please click the Preview on the upper menu (nearby Run), then click "Preview Running Application". Copy the
+link in pop-up pane's address field to open it in a browser.
+    
+
+
 ### Using AWS S3 as Image Backend
 
 If you wish to use the S3 image backend (allowing images to be saved for more than 2 days), you will need to create an S3 bucket(AWS_BUCKET). You will then need to set AWS_BUCKET, AWS_SECRET_KEY ,  AWS_ACCESS_KEY and AWS_REGION so that Rails can find that bucket. For local environments: 
