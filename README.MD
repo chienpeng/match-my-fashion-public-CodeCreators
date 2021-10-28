@@ -84,16 +84,19 @@ PG console setting completed. You can close the console here.
 
     [http://localhost:3000](http://localhost:3000)
 
-#### Cloud9 (Ubuntu Server 18.04 LTS)
+#### Cloud9 (Ubuntu Server 18.04 LTS) 
 
 1. Git clone this repository to your local machine. (Make sure you set your SSH key correctly.)
 
     ```git clone git@github.com:zihanwang1819/match-my-fashion-public-CodeCreators.git```
 2. To ensure same versions are installed, open  Gemfile, and check ruby version. Do the following:
    
-   ```rvm install 2.4.1```
+   ```bash
+   curl -ksSL https://get.rvm.io | bash -s -- --branch master
+   rvm install 3.0.2
+   ```
    
-   ```rvm use 2.4.1```   
+   ```rvm use 3.0.2```   
 3. Install the bundler
     
     ```gem install bundler```
