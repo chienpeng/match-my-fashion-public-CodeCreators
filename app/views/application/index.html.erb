@@ -81,8 +81,6 @@
           <div id="container-mix"  class="row _post-container_">
             
             <div class="be-post" id="Model1">
-              users.present? <%= @users.present? %>
-              ACCESS_KEY? <%= ENV['AWS_ACCESS_KEY'] %>
               <% @users.present? and @users.each do |info| %>
                 <div class="category-1 mix custom-column-5">
                   <% if info.attribute_values[:job_name]=="Model" %>
