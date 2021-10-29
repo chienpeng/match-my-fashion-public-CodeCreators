@@ -103,7 +103,7 @@ PG console setting completed. You can close the console here.
 4. Before running bundle install, we need to solve dependencies and configurate bundle build
     ```bash
     sudo apt update
-    sudo apt install -y libpq-dev libcurl4-openssl-dev libv8-dev
+    sudo apt install -y libpq-dev libcurl4-openssl-dev libv8-dev libxml2-dev
     bundle config build.libv8 --with-system-v8
     gem uninstall libv8  # if you preinstall some unmatched libv8 gems
     gem install therubyracer -v '0.12.3'
