@@ -182,7 +182,10 @@ class GeneralInfoController < ApplicationController
 
   # Params used to create the GeneralInfo object
   def general_info_params
-    params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :phone, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :specific_profile_id, :job_name, :profile_picture, :cover_picture, :gallery_pictures => [])
+    params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, 
+    :year_ofbirth, :gender, :phone, :country, :state, :city, :compensation, :facebook_link, 
+    :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :specific_profile_id, :job_name, 
+    :profile_picture, :cover_picture, :gallery_pictures => [])
   end
 
   # Allows user to edit the general_info_params of the GeneralInfo object
@@ -210,7 +213,10 @@ class GeneralInfoController < ApplicationController
 
   # Params used to edit the GeneralInfo object
   def general_info_update_param
-    params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :phone, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :profile_picture, :cover_picture, :gallery_pictures => [])
+    params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, 
+    :day_ofbirth, :year_ofbirth, :gender, :phone, :country, :state, :city, :compensation, 
+    :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :profile_picture, 
+    :cover_picture, :gallery_pictures => [])
   end
 
   # Allows user to edit the profession of the GeneralInfo object

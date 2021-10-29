@@ -16,9 +16,18 @@ class GeneralInfo < ApplicationRecord
 
   validates :phone, numericality: true
 
-  mount_uploader :profile_picture, AvatarUploader
-  mount_uploader :cover_picture, CoverUploader
-  mount_uploaders :gallery_pictures, GalleryUploader
+  # Commented old uploaders for reference
+  # mount_uploader :profile_picture, AvatarUploader
+  # mount_uploader :cover_picture, CoverUploader
+  # mount_uploaders :gallery_pictures, GalleryUploader
+  has_one_attached :profile_picture
+  has_one_attached :cover_picture
+  has_many_attached :gallery_pictures
+  
+  # before_save :transform_profile_picture
+  
+  # def transform_profile_picture
+  #   image = MiniMagick::Image.new()
 
   geocoded_by :address
   after_validation :geocode

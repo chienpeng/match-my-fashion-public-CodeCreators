@@ -64,6 +64,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "bcrypt", '>= 3.1.7'
 
+gem "aws-sdk-s3", require: false
+
 # group :test, :development do
 #   gem 'cucumber-rails', :require => false
 #   # database_cleaner is not required, but highly recommended
