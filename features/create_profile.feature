@@ -15,7 +15,9 @@ Scenario: When a user attempts to create a profile, account creation is successf
   And I fill in "password" with "password"
   And I fill in "confirm" with "password"
   And I press "Submit"
-  Then I should see a message that says "Account Created!"
+  Then I should see a message that says "Account Created!"  
+  # then the page goes to ...
+  # And I can see ... on that page
   
 Scenario: When a user attempts to create a profile, account creation fails
   

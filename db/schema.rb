@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_29_003229) do
+ActiveRecord::Schema.define(version: 2021_10_29_063303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,9 @@ ActiveRecord::Schema.define(version: 2021_10_29_003229) do
     t.text "job_attr"
     t.string "job_name"
     t.boolean "is_admin"
+    t.string "creators"
+    t.string "services"
+    t.string "makers"
   end
 
   create_table "login_infos", id: :serial, force: :cascade do |t|
