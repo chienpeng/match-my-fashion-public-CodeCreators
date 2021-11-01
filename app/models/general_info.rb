@@ -31,11 +31,25 @@ class GeneralInfo < ApplicationRecord
 
   geocoded_by :address
   after_validation :geocode
-
+  
+  def self.all_creators
+    ['brand_owner', 'designer', 'others']
+  end
+  
+  def self.all_services
+    ['sales', 'marketing', 'retail', 'stylist', 'blogger',
+    'influencer', 'visual', 'content_creator', 'model',
+    'forecasting', 'finances', 'others']
+  end
+  
+  def self.all_makers
+    ['manufacturing', 'materials', 'others']
+  end
+  
   def address
     [city, state, country].compact.join(", ")
   end
-
+  
   def self.search searchArg
     location = nil
     if searchArg[:location].present? and searchArg[:location] != ''
@@ -112,6 +126,9 @@ class GeneralInfo < ApplicationRecord
     @attribute_values[:bio] = "Biography: " + self.bio.to_s
     @attribute_values[:job_name] = self.job_name.to_s
     @attribute_values[:job_attr] = self.job_attr
+    # @attribute_values[:creators] = self.creators
+    # @attribute_values[:services] = self.services
+    # @attribute_values[:makers] = self.makers
     @attribute_values
   end
 
@@ -155,7 +172,6 @@ class GeneralInfo < ApplicationRecord
       # Code here to edit the database entries
     end
   end
-
 
   def self.load_Job_File()
     jobString = $redis.get('jobList')

@@ -84,6 +84,7 @@
 								<li class="edit-ln"><a href="#basic-information">Basic Information</a></li>
 								<li class="edit-ln"><a href="#address-info">Contact Information</a></li>
 								<li class="edit-ln"><a href="#profession-info">Proffesion Information</a></li>
+								<li class="edit-ln"><a href="#category">Category</a></li>
 								<li class="edit-ln"><a href="#on-the-web">On The Web</a></li>
 								<li class="edit-ln"><a href="#about-me">About Me</a></li>
 							</ul>
@@ -91,6 +92,7 @@
 					</div>
 	
 				</div>
+				
 				<%= form_for GeneralInfo.new, url: {action: "create"}, :id => 'general_info_form' do |form| %>
 					<div class="col-xs-12 col-md-9 _editor-content_">
 						<div class="sec"  data-sec="basic-information">
@@ -186,6 +188,7 @@
 								</div>
 							</div>
 						</div>
+						
 						<div class="sec"  data-sec="address-info">
 							<div class="be-large-post">
 								<div class="info-block style-2">
@@ -233,6 +236,7 @@
 								</div>
 							</div>
 						</div>
+						
 						<div class="sec"  data-sec="profession-info">
 							<div class="be-large-post">
 								<div class="info-block style-2">
@@ -265,6 +269,71 @@
 								</div>
 							</div>
 						</div>
+						
+						<div class="sec"  data-sec="category">
+							<div class="be-large-post">
+								<div class="info-block style-2">
+									<div class="be-large-post-align"><h3 class="info-block-label">Category</h3></div>
+								</div>
+								
+								<div class="info-block style-2">
+									<div class="be-large-post-align"><h3 class="info-block-label">Creators</h3></div>
+								</div>
+								
+								<div>
+									<% GeneralInfo.all_creators.each do |creator| %>
+										<% if creator.eql?"others"%>
+											<%= "Others" %>
+											<%= form.text_field :creators, {multiple: true} %>
+										<% else %>
+											<label class="category-select">
+												<%= form.check_box :creators, {multiple: true}, creator, nil %>
+												<%= "#{creator}" %>
+											</label>
+										<% end %>
+									<% end %>
+								</div>
+																
+								<div class="info-block style-2">
+									<div class="be-large-post-align"><h3 class="info-block-label">Services</h3></div>
+								</div>
+								
+								<div>
+									<%- GeneralInfo.all_services.each do |service| %>
+										<% if service.eql?"others"%>
+											<%= "Others" %>
+											<%= form.text_field :services, {multiple: true} %>
+										<% else %>
+											<label class="category-select">
+												<%= form.check_box :services, {multiple: true}, service, nil %>
+												<%= "#{service}" %>
+											</label>
+										<% end %>
+									<% end %>
+								</div>
+								
+								<div class="info-block style-2">
+									<div class="be-large-post-align"><h3 class="info-block-label">Makers</h3></div>
+								</div>
+								
+								<div>
+									<%- GeneralInfo.all_makers.each do |maker| %>
+										<% if maker.eql?"others"%>
+											<%= "Others" %>
+											<%= form.text_field :makers, {multiple: true} %>
+										<% else %>
+											<label class="category-select">
+												<%= form.check_box :makers, {multiple: true}, maker, nil %>
+												<%= "#{maker}" %>
+											</label>
+										<% end %>
+									<% end %>
+									
+								</div>
+								
+							</div>
+						</div>
+						
 						<div class="sec" data-sec="on-the-web">
 							<div class="be-large-post m-social">
 								<div class="info-block style-2">
@@ -319,6 +388,7 @@
 												<%= form.text_area :bio, :placeholder=> 'Something about you', :class => 'form-input' %>
 											</div>
 										</div>
+										
 										<!--The Skip button is here - commented for now-->
 										<!--<div class="input-col col-xs-12 col-sm-4">-->
 										<!--	<div class="be-vidget back-block">-->
@@ -332,15 +402,18 @@
 												<!--<a class="btn full color-1 size-1 hover-1" href="/edit_job_path" method="get"> <i class="fa fa-chevron-right"></i></a>-->
 											</div>
 										</div>
+										
 									</div>
 								</div>						
 							</div>
 						</div>
+						
 					</div>	
 				<% end %>
 			</div>
 		</div>
 	</div>
+	
 	<footer>	
 		<div class="footer-main">
 			<div class="container-fluid custom-container">

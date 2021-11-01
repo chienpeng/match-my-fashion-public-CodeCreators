@@ -56,7 +56,7 @@ class GeneralInfoController < ApplicationController
   # Associated with the view used for create
   def new
     @possible_Jobs = GeneralInfo.see_Jobs
-    @templates = Template.uniq.pluck(:prof_name).sort
+    @templates = Template.pluck(:prof_name).sort
     @templates.unshift('Designer')
     @templates.unshift('Model')
     @templates.unshift('Photographer')
@@ -132,13 +132,19 @@ class GeneralInfoController < ApplicationController
       redirect_to new_general_info_path and return
     end
 
-
+    # clean the nil and empty strings in the param array
+    params[:general_info][:creators].reject {|e| e.to_s.empty? }
+    params[:general_info][:services].reject {|e| e.to_s.empty? }
+    params[:general_info][:makers].reject {|e| e.to_s.empty? }
+    
     # Add user to LoginInfo DB here to
     # synchronize with GeneralInfo DB
+    # raise success flag when finish this registeration
     current_user = session[:current_login_user]
     login_user = LoginInfo.new(:email => current_user["email"], :password => current_user["password"], :password_confirmation => current_user["password"])
     userKey = SecureRandom.hex(10)
     login_user.userKey = userKey
+    
     login_user.save!
     session[:current_user_key] = userKey
 
@@ -158,11 +164,12 @@ class GeneralInfoController < ApplicationController
       @general_info.job_name = 'Admin'
       @general_info.is_admin = true
     end
-
+    
     if @general_info.save!
       # Send Verification Email upon successful sign-up
-      UserMailer.welcome_email(@general_info,current_user).deliver_now! #works
+      UserMailer.welcome_email(@general_info, current_user).deliver_now! #works
       session.delete(:current_login_user)
+      
       # Redirect to specific profession edit page
       if $template_name == "Designer"
         @general_info.update_attribute(:specific_profile_id,1)
@@ -175,9 +182,9 @@ class GeneralInfoController < ApplicationController
         redirect_to "/specific_photographer/edit"
       end
     else
-
       render :action => 'new'
     end
+    
   end
 
   # Params used to create the GeneralInfo object
@@ -185,7 +192,7 @@ class GeneralInfoController < ApplicationController
     params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, 
     :year_ofbirth, :gender, :phone, :country, :state, :city, :compensation, :facebook_link, 
     :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :specific_profile_id, :job_name, 
-    :profile_picture, :cover_picture, :gallery_pictures => [])
+    :profile_picture, :cover_picture, :gallery_pictures => [], :creators => [], :services => [], :makers => [])
   end
 
   # Allows user to edit the general_info_params of the GeneralInfo object
@@ -216,7 +223,7 @@ class GeneralInfoController < ApplicationController
     params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, 
     :day_ofbirth, :year_ofbirth, :gender, :phone, :country, :state, :city, :compensation, 
     :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :profile_picture, 
-    :cover_picture, :gallery_pictures => [])
+    :cover_picture, :gallery_pictures => [], :creators => [], :services => [], :makers => [])
   end
 
   # Allows user to edit the profession of the GeneralInfo object
