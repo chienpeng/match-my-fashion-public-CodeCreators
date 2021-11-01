@@ -24,3 +24,5 @@ domain_url: 'fashionnxt.herokuapp.com'
 #For UserMailer:
 gmail_username: <%= Rails.application.credentials.gmail_username %>
 gmail_password: <%= Rails.application.credentials.gmail_password %>
+
+# DEBUG: 0
