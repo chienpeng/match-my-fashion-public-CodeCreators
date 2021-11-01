@@ -21,6 +21,9 @@ class GeneralInfo < ApplicationRecord
   # mount_uploader :cover_picture, CoverUploader
   # mount_uploaders :gallery_pictures, GalleryUploader
   has_one_attached :profile_picture
+  #  do |attachable|
+  #   attachable.variant :thumb, resize: "300x100"
+  # end
   has_one_attached :cover_picture
   has_many_attached :gallery_pictures
   
