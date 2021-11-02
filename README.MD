@@ -137,7 +137,7 @@ to create corresponding users and databases.
     
 7. Set credentials:
     Credentials are stored safely in `config/credentials.yml.enc`. To edit it, we need to save the private key (obtained outside the GitHub)
-into a file `config/master.key`. Then type:
+into a file `config/master.key` (Add this file path to .gitignore. DO NOT PUSH IT TO GitHub REPO!!!). Then type:
     
     ```EDITOR="vim" rails credentials:edit```
 
