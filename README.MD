@@ -86,6 +86,8 @@ PG console setting completed. You can close the console here.
 
 #### Cloud9 (Ubuntu Server 18.04 LTS) 
 
+##### Development
+
 1. Git clone this repository to your local machine. (Make sure you set your SSH key correctly.)
 
     ```git clone git@github.com:zihanwang1819/match-my-fashion-public-CodeCreators.git```
@@ -132,11 +134,31 @@ to create corresponding users and databases.
 * Migrate database:
 
     ```rails db:migrate RAILS_ENV=development```
-7. Start the rails server
+    
+7. Set credentials:
+    Credentials are stored safely in `config/credentials.yml.enc`. To edit it, we need to save the private key (obtained outside the GitHub)
+into a file `config/master.key`. Then type:
+    
+    ```EDITOR="vim" rails credentials:edit```
+
+to edit the `credentials.yml.enc` where you can manage your secrets.
+
+To use the credentials, please code `Rails.application.credentials.SECRET_NAME`.
+
+Actually, `credentials.yml.enc` is the root of credentials configuration. We can set credentials for different running environments
+separately by typing `EDITOR="vim" rails credentials:edit --environment [development/test/production]`, which will create 
+`config/credentials/[development/test/production].yml.enc` with their corresponding keys (of course, requiring more keys sharing). For simplicity, we
+only use the master credential file to store secrets currently.
+
+8. Start the rails server
 
     ```rails s -p $PORT -b $IP```  
-8. The puma app server will start, please click the Preview on the upper menu (nearby Run), then click "Preview Running Application". Copy the
+    
+9. The puma app server will start, please click the Preview on the upper menu (nearby Run), then click "Preview Running Application". Copy the
 link in pop-up pane's address field to open it in a browser.
+
+##### Local production
+
     
 
 
