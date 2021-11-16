@@ -137,7 +137,7 @@ to create corresponding users and databases.
     
 7. Set credentials:
     Credentials are stored safely in `config/credentials.yml.enc`. To edit it, we need to save the private key (obtained outside the GitHub)
-into a file `config/master.key`. Then type:
+into a file `config/master.key` (Add this file path to .gitignore. DO NOT PUSH IT TO GitHub REPO!!!). Then type:
     
     ```EDITOR="vim" rails credentials:edit```
 
@@ -157,8 +157,16 @@ only use the master credential file to store secrets currently.
 9. The puma app server will start, please click the Preview on the upper menu (nearby Run), then click "Preview Running Application". Copy the
 link in pop-up pane's address field to open it in a browser.
 
-##### Local production
+##### **Local** production deployment
 
+1. ```rails db:migrate RAILS_ENV=production```
+2. Comment out the production's username and password in `config/database.yml`
+3. ```RAILS_ENV=production rails s -p $PORT -b $IP```
+
+##### Heroku deployment
+
+1. Uncomment production's username and password in `config/database.yml`
+2. Refer to the Microsoft Word document.
     
 
 
