@@ -34,3 +34,20 @@ When /^I sign up for an account$/ do
       :password_confirmation => "Hello123!"
     })
 end
+
+And /^(?:|I )(un)?check "([^"]*)" for "([^"]*)"$/ do |value, field|
+  uncheck ? uncheck("field[#{value}]") : (check("field[#{value}]"))
+end
+
+And /^(?:|I )type "([^"]*)" for "([^"]*)"$/ do |value, field|
+  type(value, :to=> field[Others])
+end
+
+When /I (un)?check to agree on conditions/ do
+  uncheck ? uncheck(:terms_of_service) : (check(:terms_of_service))
+end
+
+Then /^I should still be on the (register basic information page)/ do |page_name|
+  current_path = URI.parse(current_url).path
+  expect(current_path).to eq(path_to(page_name))
+end
