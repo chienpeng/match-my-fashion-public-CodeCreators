@@ -192,11 +192,16 @@
             <div class="row profile-row">
                 <div class="col-md-10 col-md-offset-1">
                     <div id="container-mix"  class="row _post-container_">
-						<% if @on_Own %>
-							<div class="be-desc-label"><a href="/galleries/new">Add Project</a></div>
-						<% end %>
                         <div class="be-post">
                             <div class="be-desc-label">Gallery Pictures</div>
+                            	<div class="col-md-3">
+                            		<% if @on_Own %>
+										<!--div class="be-desc-label"><a href="/galleries/new">Add Project</a></div-->
+										<a href="/galleries/new"><button>
+											<img class="add-project" src="<%= asset_path "add-button.jpg"%>" alt="Add Project">
+										<br>Add Project</button></a>
+									<% end %>
+								</div>
 							<% @gallery.present? and @gallery.each do |gallery| %>
 								<% if gallery.GeneralInfo_id == @general_info.id %>
 									<div class="col-md-3">
