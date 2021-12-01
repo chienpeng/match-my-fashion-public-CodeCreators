@@ -15,6 +15,7 @@ class GeneralInfo < ApplicationRecord
 
 
   validates :phone, numericality: true
+  validates :terms_of_service, acceptance: true
 
   # Commented old uploaders for reference
   # mount_uploader :profile_picture, AvatarUploader

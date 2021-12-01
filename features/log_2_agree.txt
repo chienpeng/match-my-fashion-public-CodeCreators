@@ -1,0 +1,33 @@
+Using the default profile...
+Feature:Check options of field category details
+  As a user
+  So that I can clarify the related fields of my work on my profile
+  I want to check options of fields including creators, services and makers when register
+
+  Background: the new user have started the registration process # features/sign_up_new.feature:7 
+    Given I am on the login page                                 # features/step_definitions/sign_up_new_steps.rb:1
+    When I sign up for an account                                # features/step_definitions/sign_up_new_steps.rb:30
+    And I press sign up button                                   # features/step_definitions/sign_up_new_steps.rb:18
+
+  Scenario: Choose field categories                                # features/check_categories.feature:13
+    When I am on the register basic information page               # features/step_definitions/sign_up_new_steps.rb:5
+    And I enter Amy to first name                                  # features/step_definitions/sign_up_new_steps.rb:26
+    And I enter Yu to last name                                    # features/step_definitions/sign_up_new_steps.rb:26
+    And I select "Jan" from month                                  # features/step_definitions/sign_up_new_steps.rb:22
+    And I select "01" from day                                     # features/step_definitions/sign_up_new_steps.rb:22
+    And I select "2017" from year                                  # features/step_definitions/sign_up_new_steps.rb:22
+    And I select "Female" from gender                              # features/step_definitions/sign_up_new_steps.rb:22
+    And I eneter College Station to city                           # features/step_definitions/sign_up_new_steps.rb:26
+    And I enter 1112223333 to phone number                         # features/step_definitions/sign_up_new_steps.rb:26
+    And I select "designer" for creators                           # features/step_definitions/sign_up_new_steps.rb:38
+    And I select "influencer" for services                         # features/step_definitions/sign_up_new_steps.rb:38
+    And I type "assembling" for makers                             # features/step_definitions/sign_up_new_steps.rb:42
+    When I press save and continue button                          # features/step_definitions/sign_up_new_steps.rb:18
+    Then I should still be on the register basic information page  # features/step_definitions/sign_up_new_steps.rb:50
+    And I check to agree on conditions                             # features/step_definitions/sign_up_new_steps.rb:46
+    When I press save and continue button                          # features/step_definitions/sign_up_new_steps.rb:18
+    Then I should be on the register professional page             # features/step_definitions/sign_up_new_steps.rb:9
+
+1 scenarios (1 passed)
+14 steps (20 passed)
+0m0.178s

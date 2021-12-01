@@ -86,6 +86,7 @@
 								<li class="edit-ln"><a href="#profession-info">Proffesion Information</a></li>
 								<li class="edit-ln"><a href="#category">Category</a></li>
 								<li class="edit-ln"><a href="#on-the-web">On The Web</a></li>
+								<li class="edit-ln"><a href="#about-me">Terms&Conditions</a></li>
 								<li class="edit-ln"><a href="#about-me">About Me</a></li>
 							</ul>
 						</div>	
@@ -373,6 +374,23 @@
 								</div>
 							</div>
 						</div>
+						
+						
+						<div class="sec"  data-sec="Terms&Conditions">
+							<div class="be-large-post">
+								<div class="info-block style-2">
+									<div class="be-large-post-align"><h3 class="info-block-label">Terms&Conditions</h3></div>
+								</div>
+								
+								<div>
+									<%= form.check_box(:terms_of_service, :checked => false, :required => '') %>
+									<%= "I agree to the " %>
+
+									<%= link_to( 'terms of service', terms_of_service_path, method: :get, :onclick=>"window.open(this.href,'Terms of Service', 'height=600, width=600');return false;"  ) %>
+								</div>
+							</div>
+						</div>
+						
 		
 						<div class="sec"  data-sec="about-me" >
 							<div class="be-large-post">
@@ -407,6 +425,7 @@
 								</div>						
 							</div>
 						</div>
+
 						
 					</div>	
 				<% end %>

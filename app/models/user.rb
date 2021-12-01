@@ -3,8 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # devise :database_authenticatable, :registerable,
   #        :recoverable, :rememberable, :trackable, :validatable
-
+  # attr_accessor :terms_of_service
   devise :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
+  # validates :terms_of_service, acceptance: true
 
   def self.new_with_session(params, session)
     super.tap do |user|
