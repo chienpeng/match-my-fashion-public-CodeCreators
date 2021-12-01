@@ -18,13 +18,13 @@ RSpec.describe SpecificDesignerController, type: :controller do
   
   describe "POST #create" do 
     it 'should create SpecificDesigner' do
-      post :create, :specific_designer => { :influencers => "Me", :specialties => "Being cool", :compensation => "Any", :experience => "11+ years", :genre => "Acting" }
+      post :create, params: { :specific_designer => { :influencers => "Me", :specialties => "Being cool", :compensation => "Any", :experience => "11+ years", :genre => "Acting" } }
       expect(response).to redirect_to root_path
     end
     it 'should not create SpecificDesigner' do
       ### NEED TO FIX ###
       # Look at data to see what "duplicate" data can be used to cause save to fail
-      post :create, :specific_designer => { :influencers => "Me", :specialties => "Being cool", :compensation => "Any", :experience => "11+ years", :genre => "Acting" }
+      post :create, params: { :specific_designer => { :influencers => "Me", :specialties => "Being cool", :compensation => "Any", :experience => "11+ years", :genre => "Acting" } }
       # expect(response).to render_template new_specific_designer_path
       expect(response).to redirect_to root_path
     end
