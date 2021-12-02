@@ -145,6 +145,8 @@ class GeneralInfoController < ApplicationController
     userKey = SecureRandom.hex(10)
     login_user.userKey = userKey
     
+    flash[:success] = "Congratulations! You have registered successfully!"
+
     login_user.save!
     session[:current_user_key] = userKey
 
@@ -165,9 +167,12 @@ class GeneralInfoController < ApplicationController
       @general_info.is_admin = true
     end
     
+    @general_info.update_attribute(:specific_profile_id,1)
+    
     if @general_info.save!
       # Send Verification Email upon successful sign-up
       UserMailer.welcome_email(@general_info, current_user).deliver_now! #works
+      
       session.delete(:current_login_user)
       
       # Redirect to specific profession edit page
@@ -192,7 +197,7 @@ class GeneralInfoController < ApplicationController
     params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, 
     :year_ofbirth, :gender, :phone, :country, :state, :city, :compensation, :facebook_link, 
     :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :specific_profile_id, :job_name, 
-    :profile_picture, :cover_picture, :gallery_pictures => [], :creators => [], :services => [], :makers => [])
+    :profile_picture, :cover_picture, :terms_of_service, :gallery_pictures => [], :creators => [], :services => [], :makers => [])
   end
 
   # Allows user to edit the general_info_params of the GeneralInfo object

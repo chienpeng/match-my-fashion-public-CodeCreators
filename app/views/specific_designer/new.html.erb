@@ -4,6 +4,9 @@
   <%= render :partial => "/layout/body" %>
 
 <section  id="specificForm" class="container content-section text-center">
+  <% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %>"><%= message %></div>
+  <% end %>
 
   <div id="SPECIFICFORM">
     <h1>
@@ -48,7 +51,7 @@
         <br/>
       <% end %>
 
-      <%= f.submit "Submit" %>
+      <%= f.submit "Submit and go to the homepage" %>
     <% end %>
   </div>
   

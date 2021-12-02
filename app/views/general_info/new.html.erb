@@ -272,7 +272,6 @@
 						</div>
 						
 						<div class="sec"  data-sec="category">
-							
 							<div class="be-large-post">
 								<div class="info-block style-2">
 									<div class="be-large-post-align"><h3 class="info-block-label">Category</h3></div>
@@ -385,23 +384,22 @@
 							</div>
 						</div>
 						
-						
 						<div class="sec"  data-sec="Terms&Conditions">
 							<div class="be-large-post">
 								<div class="info-block style-2">
-									<div class="be-large-post-align"><h3 class="info-block-label">Terms&Conditions</h3></div>
-								</div>
-								
-								<div>
-									<%= form.check_box(:terms_of_service, :checked => false, :required => '') %>
-									<%= "I agree to the " %>
-
-									<%= link_to( 'terms of service', terms_of_service_path, method: :get, :onclick=>"window.open(this.href,'Terms of Service', 'height=600, width=600');return false;"  ) %>
+									<div class="be-large-post-align"><h3 class="info-block-label">Terms&Conditions</h3>
+										<br>
+										<div>
+											<label class="info-block-label">
+												<%= form.check_box(:terms_of_service, :checked => false, :required => '') %>
+												<%= "I agree to the " %>
+												<%= link_to( 'terms of service', terms_of_service_path, method: :get, :onclick=>"window.open(this.href,'Terms of Service', 'height=600, width=600');return false;"  ) %>
+											</label>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-						
-		
 						<div class="sec"  data-sec="about-me" >
 							<div class="be-large-post">
 								<div class="info-block style-2">
@@ -435,8 +433,6 @@
 								</div>						
 							</div>
 						</div>
-
-						
 					</div>	
 				<% end %>
 			</div>
@@ -477,6 +473,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<div class="footer-bottom">
 			<div class="container-fluid custom-container">
 				<div class="col-md-12 footer-end clearfix">
