@@ -126,11 +126,13 @@ to create corresponding users and databases.
     (below lines are in PostgreSQL console:)
     create user beaverthing;
     alter user beaverthing password 'ubuntu';
-    create database workspace_development;
-    create database workspace_test;
-    create database workspace_production;
+    ALTER USER beaverthing CREATEDB;
     \q # to exit the console
     ```
+* create database
+
+    ```rake db:create```
+
 * Migrate database:
 
     ```rails db:migrate RAILS_ENV=development```

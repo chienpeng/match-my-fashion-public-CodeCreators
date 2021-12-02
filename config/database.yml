@@ -32,7 +32,7 @@ default: &default
 development:
   <<: *default
   database: workspace_development
-
+  
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
@@ -66,7 +66,6 @@ development:
 test: &test
   <<: *default
   database: workspace_test
-  
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -87,23 +86,9 @@ test: &test
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+
 production:
   <<: *default
   database: workspace_production
   username: workspace
   password: <%= ENV['WORKSPACE_DATABASE_PASSWORD'] %>
-
-cucumber:
-  <<: *test
-
-cucumber:
-  <<: *test
-
-cucumber:
-  <<: *test
-
-cucumber:
-  <<: *test
-
-cucumber:
-  <<: *test

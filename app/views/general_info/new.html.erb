@@ -272,66 +272,76 @@
 						</div>
 						
 						<div class="sec"  data-sec="category">
+							
 							<div class="be-large-post">
 								<div class="info-block style-2">
 									<div class="be-large-post-align"><h3 class="info-block-label">Category</h3></div>
 								</div>
 								
-								<div class="info-block style-2">
-									<div class="be-large-post-align"><h3 class="info-block-label">Creators</h3></div>
-								</div>
-								
 								<div>
-									<% GeneralInfo.all_creators.each do |creator| %>
-										<% if creator.eql?"others"%>
-											<%= "Others" %>
-											<%= form.text_field :creators, {multiple: true} %>
-										<% else %>
-											<label class="category-select">
-												<%= form.check_box :creators, {multiple: true}, creator, nil %>
-												<%= "#{creator}" %>
-											</label>
-										<% end %>
-									<% end %>
-								</div>
-																
-								<div class="info-block style-2">
-									<div class="be-large-post-align"><h3 class="info-block-label">Services</h3></div>
-								</div>
+									<div class="be-large-post-align"><h3 class="info-block-label">Creators</h3>
+										<br>
+										<div>
+											<% GeneralInfo.all_creators.each do |creator| %>
+												<% if creator.eql?"others"%>
+													<label class="category-select">
+														<%= "Others" %>
+														<%= form.text_field :creators, {multiple: true} %>
+													</label>
+												<% else %>
+													<label class="category-select">
+														<%= form.check_box :creators, {multiple: true}, creator, nil %>
+														<%= "#{creator}" %>
+													</label>
+												<% end %>
+											<% end %>
+										</div>
+									</div>
 								
+								</div>
+								<br>
 								<div>
-									<%- GeneralInfo.all_services.each do |service| %>
-										<% if service.eql?"others"%>
-											<%= "Others" %>
-											<%= form.text_field :services, {multiple: true} %>
-										<% else %>
-											<label class="category-select">
-												<%= form.check_box :services, {multiple: true}, service, nil %>
-												<%= "#{service}" %>
-											</label>
-										<% end %>
-									<% end %>
+									<div class="be-large-post-align"><h3 class="info-block-label">Services</h3>
+										<br>
+										<div>
+											<%- GeneralInfo.all_services.each do |service| %>
+												<% if service.eql?"others"%>
+													<label class="category-select">
+														<%= "Others" %>
+														<%= form.text_field :services, {multiple: true} %>
+													</label>
+												<% else %>
+													<label class="category-select">
+														<%= form.check_box :services, {multiple: true}, service, nil %>
+														<%= "#{service}" %>
+													</label>
+												<% end %>
+											<% end %>
+										</div>
+									</div>
 								</div>
 								
-								<div class="info-block style-2">
-									<div class="be-large-post-align"><h3 class="info-block-label">Makers</h3></div>
-								</div>
-								
+								<br>
 								<div>
-									<%- GeneralInfo.all_makers.each do |maker| %>
-										<% if maker.eql?"others"%>
-											<%= "Others" %>
-											<%= form.text_field :makers, {multiple: true} %>
-										<% else %>
-											<label class="category-select">
-												<%= form.check_box :makers, {multiple: true}, maker, nil %>
-												<%= "#{maker}" %>
-											</label>
-										<% end %>
-									<% end %>
-									
+									<div class="be-large-post-align"><h3 class="info-block-label">Makers</h3>
+										<br>
+										<div>
+											<%- GeneralInfo.all_makers.each do |maker| %>
+												<% if maker.eql?"others"%>
+													<label class="category-select">
+														<%= "Others" %>
+														<%= form.text_field :makers, {multiple: true} %>
+													</label>
+												<% else %>
+													<label class="category-select">
+														<%= form.check_box :makers, {multiple: true}, maker, nil %>
+														<%= "#{maker}" %>
+													</label>
+												<% end %>
+											<% end %>
+										</div>
+									</div>
 								</div>
-								
 							</div>
 						</div>
 						

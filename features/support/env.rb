@@ -4,18 +4,18 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
+require "selenium/webdriver"
+require 'capybara/cucumber'
 require 'cucumber/rails'
 require 'webdrivers'
-# frozen_string_literal: true
 
-# frozen_string_literal: true
 
 # frozen_string_literal: true
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
 # selectors in your step definitions to use the XPath syntax.
-# Capybara.default_selector = :xpath
+# Capybara.default_selector = :css
 
 # By default, any exception happening in your Rails application will bubble up
 # to Cucumber so that your scenario will fail. This is a different from how
@@ -61,3 +61,25 @@ end
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
+
+Webdrivers.logger.level = :DEBUG
+# Webdrivers::Chromedriver.required_version = '96.0.4664.45'
+# Selenium::WebDriver::Chrome.path = '/usr/bin/google-chrome'
+
+
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+
+Capybara.register_driver :headless_chrome do |app|
+  caps = Selenium::WebDriver::Remote::Capabilities.chrome(
+      chromeOptions: {args: %w[headless no-sandbox disable-dev-shm-usage remote-debugging-port=9222 disable-infobars]}
+    );
+    
+  opts = Selenium::WebDriver::Chrome::Options.new(
+      args: %w[headless no-sandbox disable-dev-shm-usage remote-debugging-port=8080]
+    );
+
+  Capybara::Selenium::Driver.new(app, :browser => :chrome, desired_capabilities: caps)
+  
+end

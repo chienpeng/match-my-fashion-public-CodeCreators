@@ -1,4 +1,8 @@
 Rails.application.configure do
+  # Configure 'rails notes' to inspect Cucumber files
+  config.annotations.register_directories('features')
+  config.annotations.register_extensions('feature') { |tag| /#\s*(#{tag}):?\s*(.*)$/ }
+
   # UserMailer
   config.action_mailer.delivery_method = :sendmail
   config.action_mailer.perform_deliveries = true

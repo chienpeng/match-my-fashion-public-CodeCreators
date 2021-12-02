@@ -1,8 +1,9 @@
-Given /^am on the (login page)/ do |page_name|
+Given /^I am on the (login) page/ do |page_name|
+  byebug
   visit path_to(page_name)
 end
 
-When /^am on the (register basic information page)/ do |page_name|
+When /^I am on the (register basic information) page/ do |page_name|
   visit path_to(page_name)
 end
 

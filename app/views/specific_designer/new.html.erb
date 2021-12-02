@@ -32,42 +32,22 @@
       </b>
       
       <br/>
-      <% allgenres_first_line = ["Acting", "Art", "Cosplay", "Dance", "Editorial", "Erotic", "Fashion"] %>
-      <% allgenres_first_line.each do |allgenre|  %>
-        <label class="category-select">
-          <%= f.check_box :allgenres, {:multiple => true}, allgenre, nil %>
-          <%= "#{allgenre}" %>
-        </label>
-      <% end %>
       
-      <br/>
-      <% allgenres_second_line = ["Fetish", "Fitness", "Glamour", "Hair/Makeup", "Lifestyle", "Lingerie"] %>
-      <% allgenres_second_line.each do |allgenre|  %>
-        <label class="category-select">
-          <%= f.check_box :allgenres, {:multiple => true}, allgenre, nil %>
-          <%= "#{allgenre}" %>
-        </label>
+      <% allgenres_lines = [["Acting", "Art", "Cosplay", "Dance", "Editorial", "Erotic", "Fashion"], 
+                            ["Fetish", "Fitness", "Glamour", "Hair/Makeup", "Lifestyle", "Lingerie"],
+                            ["Parts Modeling", "Performance Artist", "Pinup", "Promotional Modeling", "Maternal"],
+                            ["Runway", "Spokesperson/Host", "Sports", "Stunt", "Swimwear", "Underwater"]]%>
+                            
+      <% allgenres_lines.each do |allgenres_line|  %>
+        <% allgenres_line.each do |allgenre|  %>
+          <label class="category-select">
+            <%= f.check_box :allgenres, {:multiple => true}, allgenre, nil %>
+            <%= "#{allgenre}" %>
+          </label>
+        <% end %>
+        <br/>
       <% end %>
-      
-      <br/>
-      <% allgenres_third_line = ["Parts Modeling", "Performance Artist", "Pinup", "Promotional Modeling", "Maternal"] %>
-      <% allgenres_third_line.each do |allgenre|  %>
-        <label class="category-select">
-          <%= f.check_box :allgenres, {:multiple => true}, allgenre, nil %>
-          <%= "#{allgenre}" %>
-        </label>
-      <% end %>
-    
-      <br/>
-      <% allgenres_forth_line = ["Runway", "Spokesperson/Host", "Sports", "Stunt", "Swimwear", "Underwater"] %>
-      <% allgenres_forth_line.each do |allgenre|  %>
-        <label class="category-select">
-          <%= f.check_box :allgenres, {:multiple => true}, allgenre, nil %>
-          <%= "#{allgenre}" %>
-        </label>
-      <% end %>
-      
-      <br/>
+
       <%= f.submit "Submit" %>
     <% end %>
   </div>
