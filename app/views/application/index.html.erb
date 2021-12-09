@@ -96,14 +96,38 @@
 				</div>
 			</div>
 			<% end %>
-		
-    
+			<div class = "row">
+			<div class = "col-md-1">
+			</div>
+			<div class = "col-md-2">
+				<right><a><img class="AD1" src="<%= asset_path "ADleft.jpg"%>" alt="AD1"></a></right>
+			</div>
+			<div class = "col-md-9">
 			<div class=head-bg-content>
+				
+										
+				
+				
+				<div class="homepage-login-btn-section">
+					<div class="landing_search_button">
+						<%= link_to 'What Are You Looking For?', search_engine_show_path, :id => "custom_but_style" %>
+					</div>
+				</div>
+				
+				<div class="login_block">
+				
+					<div class="register_howitworks">
+						<a class="be-register color-1 size-1 register-but-below-search-but" href="">Register Your Business>></a>
+						<a class=" color-1 size-1 register-but-below-search-but" href="">How It Works>></a>
+					</div>
+				</div>
+				<p>				</p>
 				<center><a href="####"><button id="myBtn">
-											<img class="add-project" src="<%= asset_path "FashionXTLogo2.png"%>" alt="Add Project">
+											<img class="add-project" src="<%= asset_path "FashionXTLogo3.png"%>" alt="Fashion Logo2">
 										</button></a></center>
+										
 				<div id="myModal" class="modal">
-
+        
   				<!-- Modal content -->
   					<div class="modal-content">
     					<span class="close">&times;</span>
@@ -128,25 +152,12 @@ Let’s talk how we can assist your needs..</p>
     							<center><a href= "https://fashionxt.com/"><img class="AD4" src="<%= asset_path "VistSite2.jpg"%>" alt="Visit2"></a></center>
     							<center><img class="arrow" src="<%= asset_path "arrow-click.jpg"%>" alt="arrow"></center>
     						</div>
-    						
-    						
+    			
     					</div>
   					</div>
-
-				</div>
-				<div class="homepage-login-btn-section">
-					<div class="landing_search_button">
-						<%= link_to 'What Are You Looking For?', search_engine_show_path, :id => "custom_but_style" %>
-					</div>
-				</div>
-				
-				<div class="login_block">
-					
-					<div class="register_howitworks">
-						<a class="be-register color-1 size-1 register-but-below-search-but" href="">Register Your Business>></a>
-						<a class=" color-1 size-1 register-but-below-search-but" href="">How It Works>></a>
-					</div>
-				</div>
+  				</div>
+			</div>
+			</div>
 			</div>
 			<script>
 // Get the modal
@@ -178,7 +189,7 @@ window.onclick = function(event) {
 		  
 		</div>
 		</div>
-
+		
     <%= render 'layout/category' %>
         
     <div class="container-fluid custom-container">
