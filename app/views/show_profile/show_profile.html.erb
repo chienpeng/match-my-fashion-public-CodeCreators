@@ -195,9 +195,9 @@
                             	<div class="col-md-3">
                             		<% if @on_Own %>
 										<!--div class="be-desc-label"><a href="/galleries/new">Add Project</a></div-->
-										<a href="/galleries/new"><button>
+										<center><a href="/galleries/new"><button>
 											<img class="add-project" src="<%= asset_path "add-button.jpg"%>" alt="Add Project">
-										<br>Add Project</button></a>
+										<br>Add Project</button></a></center>
 									<% end %>
 								</div>
 							<% @gallery.present? and @gallery.each do |gallery| %>
