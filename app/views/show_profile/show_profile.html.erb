@@ -113,19 +113,16 @@
 							<% else %>
                                 <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>" width="150px" height="150px" style="position:absolute;top:10px;left:30px" alt="">
 							<% end %>
-							<div class = "show-page-front">
-								INSPIRED BY: 
-								<span>INSPIRATION TO:</span>
-							</div>
-								<p >&emsp;</p>
-								<p style="font-size: 12px/30px; margin-top:10px; text-align: left; margin-left: 287px" ><%= @general_info.first_name %>&emsp;<%= @general_info.last_name %></p>
-								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px"><%= @general_info.city %></p>
-								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px"><%= @general_info.state %></p>
-								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px; margin-bottom: 0px;"><%= @general_info.country %></p>
-								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px; margin-bottom: 20px;"><%= @general_info.phone %></p>
-								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px; margin-bottom: 20px;"><%= @general_info.specific_profile %></p>
-
-								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 30px; margin-bottom: 40px;">high light:</p>
+							
+							<p style="font-size: 12px/30px; margin-top:10px; text-align: left; margin-left: 180px" ><%= "Name: "%> &emsp;<%= "#{@general_info.first_name} #{@general_info.last_name}" %></p>
+							<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 180px"> <%= "City/State/Country: "%> &emsp; <%= "#{@general_info.city} #{@general_info.state} #{@general_info.country}"%></p>
+							<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 180px; margin-bottom: 20px;"> <%= "Phone: "%> &emsp; <%= @general_info.phone %></p>
+							<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 180px; margin-bottom: 20px;"><%= @general_info.specific_profile %></p>
+							
+							<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 180px; margin-bottom: 20px;"> <%= "Category" %> </p>
+							<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 180px; margin-bottom: 20px;"><%=" Creators: #{@general_info.creators.scan(/"(\w+)"/).join(" ")}"%></p>
+							<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 180px; margin-bottom: 20px;"><%=" Services: #{@general_info.services.scan(/"(\w+)"/).join(" ")}"%></p>
+							<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 180px; margin-bottom: 20px;"><%=" Makers:   #{@general_info.makers.scan(/"(\w+)"/).join(" ")}"%></p>
 							
 							<!--<img src="img/ava_10.jpg" alt=""> -->
 							
@@ -188,6 +185,7 @@
 			  	</div>
 			</div>
 		</div>
+	
         <div class="container-fluid custom-container">
             <div class="row profile-row">
                 <div class="col-md-10 col-md-offset-1">
