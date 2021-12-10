@@ -127,6 +127,7 @@ to create corresponding users and databases.
     create user beaverthing;
     alter user beaverthing password 'ubuntu';
     ALTER USER beaverthing CREATEDB;
+    create database workspace_production;
     \q # to exit the console
     ```
 * create database
