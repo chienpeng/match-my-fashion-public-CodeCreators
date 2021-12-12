@@ -27,6 +27,7 @@ Get Facebook Login to function:
    ```rvm install 2.4.1```
    
    ```rvm use 2.4.1```   
+
 6. Install the bundler
     
     ```gem install bundler```
