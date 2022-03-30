@@ -13,6 +13,8 @@ Get Facebook Login to function:
 
 ### How to start a local server:
 
+#### OSX
+
 1. git clone the repository to your local machine  
     ```https://github.com/codecreators07/match-my-fashion-public-CodeCreators```
 2. Once the files are downloaded, follow the standard procedure of installing ruby on rails. 
@@ -25,6 +27,7 @@ Get Facebook Login to function:
    ```rvm install 2.4.1```
    
    ```rvm use 2.4.1```   
+
 6. Install the bundler
     
     ```gem install bundler```
@@ -81,6 +84,96 @@ PG console setting completed. You can close the console here.
 8. The local server will start on the following link
 
     [http://localhost:3000](http://localhost:3000)
+
+#### Cloud9 (Ubuntu Server 18.04 LTS) 
+
+##### Development
+
+1. Git clone this repository to your local machine. (Make sure you set your SSH key correctly.)
+
+    ```git clone git@github.com:zihanwang1819/match-my-fashion-public-CodeCreators.git```
+2. To ensure same versions are installed, open  Gemfile, and check ruby version. Do the following:
+   
+   ```bash
+   curl -ksSL https://get.rvm.io | bash -s -- --branch master
+   rvm install 3.0.2
+   ```
+   
+   ```rvm use 3.0.2```   
+3. Install the bundler
+    
+    ```gem install bundler```
+4. Before running bundle install, we need to solve dependencies and configurate bundle build
+    ```bash
+    sudo apt update
+    sudo apt install -y libpq-dev libcurl4-openssl-dev libv8-dev libxml2-dev
+    bundle config build.libv8 --with-system-v8
+    gem uninstall libv8  # if you preinstall some unmatched libv8 gems
+    gem install therubyracer -v '0.12.3'
+    ```
+5. Bundle install to install all the dependencies in Gemfile
+
+    ```bundle install```
+
+6. Before starting the server, we have to run the PostgreSQL (pg). Here are some steps that you need to follow.
+* Install PostgreSQL:
+    ```bash
+    sudo apt install -y postgresql postgresql-contrib
+    ```
+* According to the database configuration file: (./config/database.yml), we enter the PostgreSQL with the default user postgres
+to create corresponding users and databases.
+    ```bash
+    sudo -u postgres psql
+    (below lines are in PostgreSQL console:)
+    create user beaverthing;
+    alter user beaverthing password 'ubuntu';
+    ALTER USER beaverthing CREATEDB;
+    create database workspace_production;
+    \q # to exit the console
+    ```
+* create database
+
+    ```rake db:create```
+
+* Migrate database:
+
+    ```rails db:migrate RAILS_ENV=development```
+    
+7. Set credentials:
+    Credentials are stored safely in `config/credentials.yml.enc`. To edit it, we need to save the private key (obtained outside the GitHub)
+into a file `config/master.key` (Add this file path to .gitignore. DO NOT PUSH IT TO GitHub REPO!!!). Then type:
+    
+    ```EDITOR="vim" rails credentials:edit```
+
+to edit the `credentials.yml.enc` where you can manage your secrets.
+
+To use the credentials, please code `Rails.application.credentials.SECRET_NAME`.
+
+Actually, `credentials.yml.enc` is the root of credentials configuration. We can set credentials for different running environments
+separately by typing `EDITOR="vim" rails credentials:edit --environment [development/test/production]`, which will create 
+`config/credentials/[development/test/production].yml.enc` with their corresponding keys (of course, requiring more keys sharing). For simplicity, we
+only use the master credential file to store secrets currently.
+
+8. Start the rails server
+
+    ```rails s -p $PORT -b $IP```  
+    
+9. The puma app server will start, please click the Preview on the upper menu (nearby Run), then click "Preview Running Application". Copy the
+link in pop-up pane's address field to open it in a browser.
+
+##### **Local** production deployment
+
+1. ```rails db:migrate RAILS_ENV=production```
+2. Comment out the production's username and password in `config/database.yml`
+3. ```RAILS_ENV=production rails s -p $PORT -b $IP```
+
+##### Heroku deployment
+
+1. Uncomment production's username and password in `config/database.yml`
+2. Refer to the Microsoft Word document.
+    
+
+
 ### Using AWS S3 as Image Backend
 
 If you wish to use the S3 image backend (allowing images to be saved for more than 2 days), you will need to create an S3 bucket(AWS_BUCKET). You will then need to set AWS_BUCKET, AWS_SECRET_KEY ,  AWS_ACCESS_KEY and AWS_REGION so that Rails can find that bucket. For local environments: 

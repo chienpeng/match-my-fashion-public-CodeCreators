@@ -72,4 +72,3 @@ Then(/^I should see "(.*?)"$/) do |field_name|
     page.has_content?("Incorrect Password")
   end
 end
-

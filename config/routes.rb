@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'galleries/new'
 
 #  get 'galleries/create'
-
+  
   get 'galleries/destroy'
 
   get 'galleries/index'
@@ -37,7 +37,10 @@ Rails.application.routes.draw do
     post '/delete' => 'admin#delete'
   end
 
-  get '/general_info/make_admin/:user' => 'general_info#make_admin' 
+  get '/general_info/make_admin/:user' => 'general_info#make_admin'
+  get 'terms_of_service' => 'general_info#terms_of_service'
+  
+  get '/make_admin/:user' => 'general_info#make_admin' 
   
   get 'edit_job' => 'edit_job#edit'
   post 'edit_job' => 'edit_job#update'

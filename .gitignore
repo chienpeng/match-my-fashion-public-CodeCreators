@@ -23,6 +23,14 @@ TAMU-PROR-MatchMyFashion.iml
 coverage
 public/uploads/
 local_redis/
-
+storage/
 # Ignore application configuration
 /config/application.yml
+
+/config/credentials/production.key
+
+/config/credentials/development.key
+
+/config/credentials/test.key
+
+/config/master.key

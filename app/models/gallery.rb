@@ -6,5 +6,6 @@ class Gallery < ApplicationRecord
     validates_presence_of :gallery_picture
     validates_presence_of :GeneralInfo_id
 
-    mount_uploaders :gallery_picture, GalleryUploader
+    # mount_uploaders :gallery_picture, GalleryUploader
+    has_many_attached :gallery_picture
 end

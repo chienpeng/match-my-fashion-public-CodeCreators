@@ -14,6 +14,48 @@
 		<link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
     	<link rel="stylesheet" href="<%= asset_path "profile.css"%>">
+    	
+    	<style>
+    	
+    	.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+	</style>
 	</head>
 
 	<body>
@@ -54,25 +96,100 @@
 				</div>
 			</div>
 			<% end %>
-
+			<div class = "row">
+			<div class = "col-md-1">
+			</div>
+			<div class = "col-md-2">
+				<right><a><img class="AD1" src="<%= asset_path "ADleft.jpg"%>" alt="AD1"></a></right>
+			</div>
+			<div class = "col-md-9">
 			<div class=head-bg-content>
+				
+										
+				
+				
 				<div class="homepage-login-btn-section">
 					<div class="landing_search_button">
 						<%= link_to 'What Are You Looking For?', search_engine_show_path, :id => "custom_but_style" %>
 					</div>
 				</div>
+				
 				<div class="login_block">
-					
+				
 					<div class="register_howitworks">
 						<a class="be-register color-1 size-1 register-but-below-search-but" href="">Register Your Business>></a>
 						<a class=" color-1 size-1 register-but-below-search-but" href="">How It Works>></a>
 					</div>
 				</div>
-
-				</div>
+				<p>				</p>
+				<center><a href="####"><button id="myBtn">
+											<img class="add-project" src="<%= asset_path "FashionXTLogo3.png"%>" alt="Fashion Logo2">
+										</button></a></center>
+										
+				<div id="myModal" class="modal">
+        
+  				<!-- Modal content -->
+  					<div class="modal-content">
+    					<span class="close">&times;</span>
+    					<div class = "row">
+    						<div class = "col-md-3">
+    							<center><img class="AD1" src="<%= asset_path "AD1.jpg"%>" alt="AD1"></center>
+    							<h3>International Fashion Show:FashioNXT Week</h3>
+    							<p>The annual FashioNXT Week premieres collections in a production that TIME Magazine lists #1 in the US outside NY FW. Portland Mayor recognizes it as the city’s official fashion week. Extraordinary designers from all over the US and internationally come to Portland, a leading edge creative and commerce center, to showcase what’s next in fashion and fashiontech.</p>
+    						</div>
+    						<div class = "col-md-3">
+    							<center><img class="AD2" src="<%= asset_path "AD2.jpg"%>" alt="AD2"></center>
+    							<h3>Fashion Incubators & Auditions</h3>
+    							<p>We utilize our expertise and placement opportunities in FashioNXT runway to mentor next generation of talents with hands on learning from the experts in a top level events setup. Incubators offered in fashion Design, Photography, Modeling, Hair and Makeup Styling, and Events Production. We also offer customized learning development services for organizations all over the world.</p>
+    						</div>
+    						<div class = "col-md-3">
+    							<center><img class="AD3" src="<%= asset_path "AD3.jpg"%>" alt="AD3"></center>
+    							<h3>Services for Fashion & Technology</h3>
+    							<p>FashioNXT Agency offers experiential services and business consultancy. Thought leadership in identifying market opportunities and strategy, Creative services, Events ideation and Execution; Digital Marketing, Product Licensing, Design Collaboration and Marketing Rollout, Apparel Sourcing & Manufacturing, Sample Design — our team has a long success track record for clients, small and large.
+Let’s talk how we can assist your needs..</p>
+    						</div>
+    						<div class = "col-md-3">
+    							<center><a href= "https://fashionxt.com/"><img class="AD4" src="<%= asset_path "VistSite2.jpg"%>" alt="Visit2"></a></center>
+    							<center><img class="arrow" src="<%= asset_path "arrow-click.jpg"%>" alt="arrow"></center>
+    						</div>
+    			
+    					</div>
+  					</div>
+  				</div>
 			</div>
-		</div>
+			</div>
+			</div>
+			<script>
+// Get the modal
+var modal = document.getElementById("myModal");
 
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+		  
+		</div>
+		</div>
+		
     <%= render 'layout/category' %>
         
     <div class="container-fluid custom-container">
@@ -86,8 +203,8 @@
                   <% if info.attribute_values[:job_name]=="Model" %>
                   	<a class="be-img-block">
 					  <div class="photo photo-type-line">
-                  		<% if info.profile_picture? %>
-                  			<img src="<%= info.profile_picture.url %>" alt="omg">
+                  		<% if info.profile_picture.attached? %>
+                  			<img src="<%= url_for(info.profile_picture) %>" alt="omg">
                   		<% else %>
                   			<img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
                   		<% end %>
@@ -115,8 +232,8 @@
                   <% if info.attribute_values[:job_name]=="Photographer" %>
                   <a class="be-img-block">
 					  <div class="photo photo-type-line">
-                  		<% if info.profile_picture? %>
-                  			<img src="<%= info.profile_picture.url %>" alt="omg">
+                  		<% if info.profile_picture.attached? %>
+                  			<img src="<%= url_for(info.profile_picture) %>" alt="omg">
                   		<% else %>
                   			<img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
                   		<% end %>
@@ -144,8 +261,8 @@
                   <% if info.attribute_values[:job_name]=="Agent" %>
                   <a class="be-img-block">
 					  <div class="photo photo-type-line">
-                  		<% if info.profile_picture? %>
-                  			<img src="<%= info.profile_picture.url %>" alt="omg">
+                  		<% if info.profile_picture.attached? %>
+                  			<img src="<%= url_for(info.profile_picture) %>" alt="omg">
                   		<% else %>
                   			<img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
                   		<% end %>
@@ -173,8 +290,8 @@
                 <% if info.attribute_values[:job_name]=="Designer" %>
 				<a class="be-img-block">
 				<div class="photo photo-type-line">
-					<% if info.profile_picture? %>
-						<img src="<%= info.profile_picture.url %>" alt="omg">
+					<% if info.profile_picture.attached? %>
+						<img src="<%= url_for(info.profile_picture) %>" alt="omg">
 					<% else %>
 						<img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
 					<% end %>
@@ -201,8 +318,8 @@
                 <div class="category-1 mix custom-column-5">
 				<a class="be-img-block">
 				<div class="photo photo-type-line">
-					<% if info.profile_picture? %>
-						<img src="<%= info.profile_picture.url %>" alt="omg">
+					<% if info.profile_picture.attached? %>
+						<img src="<%= url_for(info.profile_picture) %>" alt="omg">
 					<% else %>
 						<img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
 					<% end %>
@@ -232,10 +349,12 @@
 		<div class="footer-main">
 			<div class="container-fluid custom-container">
 				<div class="row">
-					<div class="col-md-3 col-xl-4">
+					<div class="col-md-2"></div>
+					<div class="col-md-5">
 						<div class="footer-block">
-							<h1 class="footer-title">About Us</h1>
+							<h1 class="footer-title text-center">About Us</h1>
 							<p><a href="https://fashionxt.com/">FashioNXT</a> creates innovative fashion experiences and the creative edge in lifestyle technology.</p>
+							<div style="position:absolute; right:200px;">
 							<ul class="soc_buttons">
 								<li id="fb"><a href="https://www.facebook.com/FASHIONXtONLINE/"><i class="fa fa-facebook"></i></a></li>
 								<li id="twitter"><a href="https://twitter.com/fashionxtonline"><i class="fa fa-twitter"></i></a></li>
@@ -243,9 +362,11 @@
 								<li id="insta"><a href="https://www.instagram.com/fashionxtonline/"><i class="fa fa-instagram"></i></a></li>
 								<li id="linkedin"><a href="https://www.linkedin.com/company/fashionxt/"><i class="fa fa-linkedin"></i></a></li>
 							</ul>
+							</div>
 						</div>
 					</div>
-					<div class="col-md-6 col-xl-2">
+					<div class="col-md-1"></div>
+					<div class="col-md-4">
 						<div class="footer-block">
 							<h1 class="footer-title">Useful Links</h1>
 							<div class="row footer-list-footer">
@@ -265,9 +386,13 @@
 		<div class="footer-bottom">
 			<div class="container-fluid custom-container">
 				<div class="col-md-12 footer-end clearfix">
-					<div class="left">
+					<div class="row">
+						<div class="col-md-4"></div>
+						<div class="col-md-4">
 						<span class="copy">© 2020. All rights reserved. &nbsp <span class="white"><a href="fashionxt.com"> FashioNXT</a></span></span>
 						<span class="created">Created by <span class="white"><a href=""> CodeCreators</a></span></span>
+						</div>
+						<div class="col-md-4"></div>
 					</div>
 				</div>
 			</div>

@@ -84,13 +84,16 @@
 								<li class="edit-ln"><a href="#basic-information">Basic Information</a></li>
 								<li class="edit-ln"><a href="#address-info">Contact Information</a></li>
 								<li class="edit-ln"><a href="#profession-info">Proffesion Information</a></li>
+								<li class="edit-ln"><a href="#category">Category</a></li>
 								<li class="edit-ln"><a href="#on-the-web">On The Web</a></li>
+								<li class="edit-ln"><a href="#about-me">Terms&Conditions</a></li>
 								<li class="edit-ln"><a href="#about-me">About Me</a></li>
 							</ul>
 						</div>	
 					</div>
 	
 				</div>
+				
 				<%= form_for GeneralInfo.new, url: {action: "create"}, :id => 'general_info_form' do |form| %>
 					<div class="col-xs-12 col-md-9 _editor-content_">
 						<div class="sec"  data-sec="basic-information">
@@ -186,6 +189,7 @@
 								</div>
 							</div>
 						</div>
+						
 						<div class="sec"  data-sec="address-info">
 							<div class="be-large-post">
 								<div class="info-block style-2">
@@ -233,6 +237,7 @@
 								</div>
 							</div>
 						</div>
+						
 						<div class="sec"  data-sec="profession-info">
 							<div class="be-large-post">
 								<div class="info-block style-2">
@@ -265,6 +270,80 @@
 								</div>
 							</div>
 						</div>
+						
+						<div class="sec"  data-sec="category">
+							<div class="be-large-post">
+								<div class="info-block style-2">
+									<div class="be-large-post-align"><h3 class="info-block-label">Category</h3></div>
+								</div>
+								
+								<div>
+									<div class="be-large-post-align"><h3 class="info-block-label">Creators</h3>
+										<br>
+										<div>
+											<% GeneralInfo.all_creators.each do |creator| %>
+												<% if creator.eql?"others"%>
+													<label class="category-select">
+														<%= "Others" %>
+														<%= form.text_field :creators, {multiple: true} %>
+													</label>
+												<% else %>
+													<label class="category-select">
+														<%= form.check_box :creators, {multiple: true}, creator, nil %>
+														<%= "#{creator}" %>
+													</label>
+												<% end %>
+											<% end %>
+										</div>
+									</div>
+								
+								</div>
+								<br>
+								<div>
+									<div class="be-large-post-align"><h3 class="info-block-label">Services</h3>
+										<br>
+										<div>
+											<%- GeneralInfo.all_services.each do |service| %>
+												<% if service.eql?"others"%>
+													<label class="category-select">
+														<%= "Others" %>
+														<%= form.text_field :services, {multiple: true} %>
+													</label>
+												<% else %>
+													<label class="category-select">
+														<%= form.check_box :services, {multiple: true}, service, nil %>
+														<%= "#{service}" %>
+													</label>
+												<% end %>
+											<% end %>
+										</div>
+									</div>
+								</div>
+								
+								<br>
+								<div>
+									<div class="be-large-post-align"><h3 class="info-block-label">Makers</h3>
+										<br>
+										<div>
+											<%- GeneralInfo.all_makers.each do |maker| %>
+												<% if maker.eql?"others"%>
+													<label class="category-select">
+														<%= "Others" %>
+														<%= form.text_field :makers, {multiple: true} %>
+													</label>
+												<% else %>
+													<label class="category-select">
+														<%= form.check_box :makers, {multiple: true}, maker, nil %>
+														<%= "#{maker}" %>
+													</label>
+												<% end %>
+											<% end %>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
 						<div class="sec" data-sec="on-the-web">
 							<div class="be-large-post m-social">
 								<div class="info-block style-2">
@@ -304,7 +383,23 @@
 								</div>
 							</div>
 						</div>
-		
+						
+						<div class="sec"  data-sec="Terms&Conditions">
+							<div class="be-large-post">
+								<div class="info-block style-2">
+									<div class="be-large-post-align"><h3 class="info-block-label">Terms&Conditions</h3>
+										<br>
+										<div>
+											<label class="info-block-label">
+												<%= form.check_box(:terms_of_service, :checked => false, :required => '') %>
+												<%= "I agree to the " %>
+												<%= link_to( 'terms of service', terms_of_service_path, method: :get, :onclick=>"window.open(this.href,'Terms of Service', 'height=600, width=600');return false;"  ) %>
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 						<div class="sec"  data-sec="about-me" >
 							<div class="be-large-post">
 								<div class="info-block style-2">
@@ -319,6 +414,7 @@
 												<%= form.text_area :bio, :placeholder=> 'Something about you', :class => 'form-input' %>
 											</div>
 										</div>
+										
 										<!--The Skip button is here - commented for now-->
 										<!--<div class="input-col col-xs-12 col-sm-4">-->
 										<!--	<div class="be-vidget back-block">-->
@@ -332,6 +428,7 @@
 												<!--<a class="btn full color-1 size-1 hover-1" href="/edit_job_path" method="get"> <i class="fa fa-chevron-right"></i></a>-->
 											</div>
 										</div>
+										
 									</div>
 								</div>						
 							</div>
@@ -341,6 +438,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<footer>	
 		<div class="footer-main">
 			<div class="container-fluid custom-container">
@@ -375,6 +473,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<div class="footer-bottom">
 			<div class="container-fluid custom-container">
 				<div class="col-md-12 footer-end clearfix">

@@ -15,18 +15,45 @@ class GeneralInfo < ApplicationRecord
 
 
   validates :phone, numericality: true
+  validates :terms_of_service, acceptance: true
 
-  mount_uploader :profile_picture, AvatarUploader
-  mount_uploader :cover_picture, CoverUploader
-  mount_uploaders :gallery_pictures, GalleryUploader
+  # Commented old uploaders for reference
+  # mount_uploader :profile_picture, AvatarUploader
+  # mount_uploader :cover_picture, CoverUploader
+  # mount_uploaders :gallery_pictures, GalleryUploader
+  has_one_attached :profile_picture
+  #  do |attachable|
+  #   attachable.variant :thumb, resize: "300x100"
+  # end
+  has_one_attached :cover_picture
+  has_many_attached :gallery_pictures
+  
+  # before_save :transform_profile_picture
+  
+  # def transform_profile_picture
+  #   image = MiniMagick::Image.new()
 
   geocoded_by :address
   after_validation :geocode
-
+  
+  def self.all_creators
+    ['brand_owner', 'designer', 'others']
+  end
+  
+  def self.all_services
+    ['sales', 'marketing', 'retail', 'stylist', 'blogger',
+    'influencer', 'visual', 'content_creator', 'model',
+    'forecasting', 'finances', 'others']
+  end
+  
+  def self.all_makers
+    ['manufacturing', 'materials', 'others']
+  end
+  
   def address
     [city, state, country].compact.join(", ")
   end
-
+  
   def self.search searchArg
     location = nil
     if searchArg[:location].present? and searchArg[:location] != ''
@@ -103,6 +130,9 @@ class GeneralInfo < ApplicationRecord
     @attribute_values[:bio] = "Biography: " + self.bio.to_s
     @attribute_values[:job_name] = self.job_name.to_s
     @attribute_values[:job_attr] = self.job_attr
+    # @attribute_values[:creators] = self.creators
+    # @attribute_values[:services] = self.services
+    # @attribute_values[:makers] = self.makers
     @attribute_values
   end
 
@@ -146,7 +176,6 @@ class GeneralInfo < ApplicationRecord
       # Code here to edit the database entries
     end
   end
-
 
   def self.load_Job_File()
     jobString = $redis.get('jobList')

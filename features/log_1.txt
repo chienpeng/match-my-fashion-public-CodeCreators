@@ -1,0 +1,27 @@
+Using the default profile...
+Feature:Fill out personal information and complete registration
+  As a new user
+  So that I can own an account at NXTFolio
+  I want to fill out my personal information during the registration and go through the registration process without any confusion
+
+  Background: the new user have started the registration process # features/sign_up_new.feature:7 
+    Given I am on the login page                                 # features/step_definitions/sign_up_new_steps.rb:1
+    When I sign up for an account                                # features/step_definitions/sign_up_new_steps.rb:30
+    And I press sign up button                                   # features/step_definitions/sign_up_new_steps.rb:18
+
+  Scenario: compelete basic information                # features/sign_up_new.feature:13
+    When I am on the register basic information page   # features/step_definitions/sign_up_new_steps.rb:5
+    And I enter Amy to first name                      # features/step_definitions/sign_up_new_steps.rb:26
+    And I enter Yu to last name                        # features/step_definitions/sign_up_new_steps.rb:26
+    And I select "Jan" from month                      # features/step_definitions/sign_up_new_steps.rb:22
+    And I select "01" from day                         # features/step_definitions/sign_up_new_steps.rb:22
+    And I select "2017" from year                      # features/step_definitions/sign_up_new_steps.rb:22
+    And I select "Female" from gender                  # features/step_definitions/sign_up_new_steps.rb:22
+    And I enter College Station to city                # features/step_definitions/sign_up_new_steps.rb:26
+    And I enter 1112223333 to phone number             # features/step_definitions/sign_up_new_steps.rb:26
+    And I press save and continue button               # features/step_definitions/sign_up_new_steps.rb:18
+    Then I should be on the register professional page # features/step_definitions/sign_up_new_steps.rb:9
+
+1 scenarios (1 passed)
+14 steps (14 passed)
+0m0.138s

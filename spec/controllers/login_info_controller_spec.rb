@@ -19,12 +19,12 @@ RSpec.describe LoginInfoController, type: :controller do
   
   describe "POST #create" do 
     it 'should create LoginInfo' do
-      post :create, :login_info => { :email => "me@me.com", :password => "Apple12345*" }
+      post :create, params: { :login_info => { :email => "me@me.com", :password => "Apple12345*" } }
       expect(response).to redirect_to root_path
     end
     it 'should not create LoginInfo' do
       ### NEED TO FIX ###
-      post :create, :login_info => { :email => "me@me.com", :password => "" }
+      post :create, params: { :login_info => { :email => "me@me.com", :password => "" } }
       expect(response).to redirect_to root_path
     end
   end
@@ -89,7 +89,7 @@ RSpec.describe LoginInfoController, type: :controller do
     end
     
     before(:each) do
-      post :login_submit, :login_info => attr
+      post :login_submit, params: { :login_info => attr }
       @login_info.reload
     end
     

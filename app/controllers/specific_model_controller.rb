@@ -40,7 +40,7 @@ class SpecificModelController < ApplicationController
   def new
     @specific_model = SpecificModel.new
   end
-   
+  
   # Create is called upon for the 3rd part of profile creation
   def create
     @specific_model = SpecificModel.new(specific_model_param)
