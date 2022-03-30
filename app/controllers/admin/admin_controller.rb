@@ -5,7 +5,7 @@ module Admin
 
     
     def landing
-      #GeneralInfo.load_Job_File #No longer needed- Job file is loaded in initializer
+      GeneralInfo.load_Job_File #No longer needed- Job file is loaded in initializer
       @hasPermission = false 
       if (session[:current_user_key] != nil && GeneralInfo.exists?(:userKey => session[:current_user_key]))
 	general_info = GeneralInfo.find_by(userKey: session[:current_user_key])

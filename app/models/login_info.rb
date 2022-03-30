@@ -8,9 +8,6 @@ class LoginInfo < ApplicationRecord
 
   attr_accessor :password_confirmation
 
-
-
-
   def self.search searchArg
 
     if searchArg[:email_regex]==nil or searchArg[:email_regex]==''
@@ -35,6 +32,7 @@ class LoginInfo < ApplicationRecord
     end
     return LoginInfo.where("email ILIKE ?",searchArg[:email])
   end
+  
   def password_requirements_are_met
     rules = {
       " must contain at least one lowercase letter"  => /[a-z]+/,

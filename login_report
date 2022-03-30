@@ -1,0 +1,110 @@
+Geocoding: Disabled
+Redis Host: local filesystem
+Using the default profile...
+# Login Feature
+Feature: Login to Application
+  As a fashion industry professional
+  So I can login to application
+  I want to enter a correct email address and password combination
+
+  Scenario: When correct login information is entered a user logs in successfully # features/login.feature:9
+    Given I am a valid user                                                       # features/step_definitions/login_steps.rb:7
+Capybara starting Puma...
+* Version 5.5.2 , codename: Zawgyi
+* Min threads: 0, max threads: 4
+* Listening on http://127.0.0.1:34067
+    When I log in                                                                 # features/step_definitions/login_steps.rb:51
+      unknown error: Chrome failed to start: crashed.
+        (unknown error: DevToolsActivePort file doesn't exist)
+        (The process started from chrome location /usr/bin/google-chrome is no longer running, so ChromeDriver is assuming that Chrome has crashed.) (Selenium::WebDriver::Error::UnknownError)
+      #0 0x560b9d6acee3 <unknown>
+      #1 0x560b9d17a608 <unknown>
+      #2 0x560b9d19d8ef <unknown>
+      #3 0x560b9d19946f <unknown>
+      #4 0x560b9d1d3f45 <unknown>
+      #5 0x560b9d1ce163 <unknown>
+      #6 0x560b9d1a3bfc <unknown>
+      #7 0x560b9d1a4c05 <unknown>
+      #8 0x560b9d6debaa <unknown>
+      #9 0x560b9d6f4651 <unknown>
+      #10 0x560b9d6dfb05 <unknown>
+      #11 0x560b9d6f5a68 <unknown>
+      #12 0x560b9d6d405f <unknown>
+      #13 0x560b9d710818 <unknown>
+      #14 0x560b9d710998 <unknown>
+      #15 0x560b9d72beed <unknown>
+      #16 0x7fb6dca286db <unknown>
+      ./features/step_definitions/login_steps.rb:52:in `/^I log in$/'
+      features/login.feature:12:in `I log in'
+    Then I should see "Logged In!"                                                # features/step_definitions/login_steps.rb:65
+    And I should be on the home page                                              # features/step_definitions/general_steps.rb:3
+
+  Scenario: When incorrect password is entered, a user cannot log in # features/login.feature:16
+    Given I am not logged in                                         # features/step_definitions/login_steps.rb:3
+      unknown error: Chrome failed to start: crashed.
+        (unknown error: DevToolsActivePort file doesn't exist)
+        (The process started from chrome location /usr/bin/google-chrome is no longer running, so ChromeDriver is assuming that Chrome has crashed.) (Selenium::WebDriver::Error::UnknownError)
+      #0 0x560b9d6acee3 <unknown>
+      #1 0x560b9d17a608 <unknown>
+      #2 0x560b9d19d8ef <unknown>
+      #3 0x560b9d19946f <unknown>
+      #4 0x560b9d1d3f45 <unknown>
+      #5 0x560b9d1ce163 <unknown>
+      #6 0x560b9d1a3bfc <unknown>
+      #7 0x560b9d1a4c05 <unknown>
+      #8 0x560b9d6debaa <unknown>
+      #9 0x560b9d6f4651 <unknown>
+      #10 0x560b9d6dfb05 <unknown>
+      #11 0x560b9d6f5a68 <unknown>
+      #12 0x560b9d6d405f <unknown>
+      #13 0x560b9d710818 <unknown>
+      #14 0x560b9d710998 <unknown>
+      #15 0x560b9d72beed <unknown>
+      #16 0x7fb6dca286db <unknown>
+      ./features/step_definitions/login_steps.rb:4:in `/^I am not logged in$/'
+      features/login.feature:18:in `I am not logged in'
+    And I am on the home page                                        # features/step_definitions/template.rb:3
+    When I follow "Login"                                            # features/step_definitions/create_profile_steps.rb:48
+    And I fill in "email" with "hellofriend@gmail.com"               # features/step_definitions/profile_steps.rb:27
+    And I fill in "password" with "notmypassword"                    # features/step_definitions/profile_steps.rb:27
+    And I press "Login"                                              # features/step_definitions/create_profile_steps.rb:52
+    Then I should see "Incorrect Password"                           # features/step_definitions/login_steps.rb:65
+
+  Scenario: When incorrect email is entered, a user cannot log in # features/login.feature:26
+    Given I am not logged in                                      # features/step_definitions/login_steps.rb:3
+      unknown error: Chrome failed to start: crashed.
+        (unknown error: DevToolsActivePort file doesn't exist)
+        (The process started from chrome location /usr/bin/google-chrome is no longer running, so ChromeDriver is assuming that Chrome has crashed.) (Selenium::WebDriver::Error::UnknownError)
+      #0 0x560b9d6acee3 <unknown>
+      #1 0x560b9d17a608 <unknown>
+      #2 0x560b9d19d8ef <unknown>
+      #3 0x560b9d19946f <unknown>
+      #4 0x560b9d1d3f45 <unknown>
+      #5 0x560b9d1ce163 <unknown>
+      #6 0x560b9d1a3bfc <unknown>
+      #7 0x560b9d1a4c05 <unknown>
+      #8 0x560b9d6debaa <unknown>
+      #9 0x560b9d6f4651 <unknown>
+      #10 0x560b9d6dfb05 <unknown>
+      #11 0x560b9d6f5a68 <unknown>
+      #12 0x560b9d6d405f <unknown>
+      #13 0x560b9d710818 <unknown>
+      #14 0x560b9d710998 <unknown>
+      #15 0x560b9d72beed <unknown>
+      #16 0x7fb6dca286db <unknown>
+      ./features/step_definitions/login_steps.rb:4:in `/^I am not logged in$/'
+      features/login.feature:28:in `I am not logged in'
+    And I am on the home page                                     # features/step_definitions/template.rb:3
+    When I follow "Login"                                         # features/step_definitions/create_profile_steps.rb:48
+    And I fill in "email" with "test"                             # features/step_definitions/profile_steps.rb:27
+    And I press "Login"                                           # features/step_definitions/create_profile_steps.rb:52
+    Then I should see "Incorrect Email"                           # features/step_definitions/login_steps.rb:65
+
+Failing Scenarios:
+cucumber features/login.feature:9 # Scenario: When correct login information is entered a user logs in successfully
+cucumber features/login.feature:16 # Scenario: When incorrect password is entered, a user cannot log in
+cucumber features/login.feature:26 # Scenario: When incorrect email is entered, a user cannot log in
+
+3 scenarios (3 failed)
+17 steps (3 failed, 13 skipped, 1 passed)
+0m2.338s
